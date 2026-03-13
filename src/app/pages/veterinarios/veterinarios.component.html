@@ -1,0 +1,113 @@
+<div class="page-container">
+
+  <div class="page-header">
+    <mat-form-field appearance="outline" class="busca">
+      <mat-label>Buscar veterinário</mat-label>
+      <input matInput (input)="buscar($event)" placeholder="Nome ou CRMV">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="abrirFormulario()">
+      <mat-icon>add</mat-icon> Novo Veterinário
+    </button>
+  </div>
+
+  <mat-card *ngIf="mostrarFormulario" class="formulario">
+    <mat-card-title>{{ editando ? 'Editar Veterinário' : 'Novo Veterinário' }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="salvar()">
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>CRMV</mat-label>
+            <input matInput formControlName="crmv">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Especialidade</mat-label>
+            <input matInput formControlName="especialidade">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="telefone">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+
+          <mat-slide-toggle formControlName="ativo" color="primary">
+            Veterinário ativo
+          </mat-slide-toggle>
+        </div>
+
+        <div class="form-acoes">
+          <button mat-button type="button" (click)="fecharFormulario()">Cancelar</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Salvar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <div *ngIf="loading" class="spinner-container">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+
+      <table mat-table [dataSource]="veterinarios" *ngIf="!loading">
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let v">{{ v.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="crmv">
+          <th mat-header-cell *matHeaderCellDef>CRMV</th>
+          <td mat-cell *matCellDef="let v">{{ v.crmv }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="especialidade">
+          <th mat-header-cell *matHeaderCellDef>Especialidade</th>
+          <td mat-cell *matCellDef="let v">{{ v.especialidade }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let v">{{ v.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ativo">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let v">
+            <span [class]="v.ativo ? 'badge ativo' : 'badge inativo'">
+              {{ v.ativo ? 'Ativo' : 'Inativo' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let v">
+            <button mat-icon-button color="primary" (click)="abrirFormulario(v)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deletar(v.id!)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+      </table>
+
+      <p *ngIf="!loading && veterinarios.length === 0" class="vazio">Nenhum veterinário encontrado.</p>
+    </mat-card-content>
+  </mat-card>
+
+</div>

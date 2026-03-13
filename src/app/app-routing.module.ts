@@ -12,13 +12,13 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
-      // { path: 'tutores', loadChildren: () => import('./pages/tutores/tutores.module').then(m => m.TutoresModule) },
-      // { path: 'animais', loadChildren: () => import('./pages/animais/animais.module').then(m => m.AnimaisModule) },
-      // { path: 'veterinarios', loadChildren: () => import('./pages/veterinarios/veterinarios.module').then(m => m.VeterinariosModule) },
-      // { path: 'consultas', loadChildren: () => import('./pages/consultas/consultas.module').then(m => m.ConsultasModule) },
+      { path: 'tutores', loadChildren: () => import('./pages/tutores/tutores.module').then(m => m.TutoresModule) },
+      { path: 'animais', loadChildren: () => import('./pages/animais/animais.module').then(m => m.AnimaisModule) },
+      { path: 'veterinarios', loadChildren: () => import('./pages/veterinarios/veterinarios.module').then(m => m.VeterinariosModule) },
+      { path: 'consultas', loadChildren: () => import('./pages/consultas/consultas.module').then(m => m.ConsultasModule) },
     ]
   },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'dashboard' }
 ];
 
 @NgModule({

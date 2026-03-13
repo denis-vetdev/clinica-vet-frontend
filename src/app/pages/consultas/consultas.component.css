@@ -1,0 +1,124 @@
+.page-container {
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+}
+
+.filtros button.ativo {
+  background: #e3f2fd;
+  color: #1565c0;
+  font-weight: bold;
+}
+
+.formulario {
+  margin-bottom: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.form-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+table {
+  width: 100%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.vazio {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.agendada {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.realizada {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.cancelada {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.horarios-container {
+  margin-bottom: 8px;
+}
+
+.horarios-label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.horario-escolhido {
+  color: #1565c0;
+  font-weight: bold;
+}
+
+.horarios-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.horarios-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.horarios-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.horario-btn {
+  min-width: 70px;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.horario-ativo {
+  background: #1565c0 !important;
+  color: white !important;
+  border-color: #1565c0 !important;
+}

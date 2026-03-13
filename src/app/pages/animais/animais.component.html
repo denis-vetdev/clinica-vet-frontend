@@ -1,0 +1,109 @@
+<div class="page-container">
+
+  <div class="page-header">
+    <mat-form-field appearance="outline" class="busca">
+      <mat-label>Buscar animal</mat-label>
+      <input matInput (input)="buscar($event)" placeholder="Nome, raça ou tutor">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="abrirFormulario()">
+      <mat-icon>add</mat-icon> Novo Animal
+    </button>
+  </div>
+
+  <mat-card *ngIf="mostrarFormulario" class="formulario">
+    <mat-card-title>{{ editando ? 'Editar Animal' : 'Novo Animal' }}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="salvar()">
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Espécie</mat-label>
+            <mat-select formControlName="especie">
+              <mat-option *ngFor="let e of especies" [value]="e.value">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Raça</mat-label>
+            <input matInput formControlName="raca">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput type="date" formControlName="nascimento">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tutor</mat-label>
+            <mat-select formControlName="tutor">
+              <mat-option *ngFor="let t of tutores" [value]="t.id">{{ t.nome }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-acoes">
+          <button mat-button type="button" (click)="fecharFormulario()">Cancelar</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Salvar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <div *ngIf="loading" class="spinner-container">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+
+      <table mat-table [dataSource]="animais" *ngIf="!loading">
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let a">{{ a.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="especie">
+          <th mat-header-cell *matHeaderCellDef>Espécie</th>
+          <td mat-cell *matCellDef="let a">{{ a.especie_display }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="raca">
+          <th mat-header-cell *matHeaderCellDef>Raça</th>
+          <td mat-cell *matCellDef="let a">{{ a.raca }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tutor_nome">
+          <th mat-header-cell *matHeaderCellDef>Tutor</th>
+          <td mat-cell *matCellDef="let a">{{ a.tutor_nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nascimento">
+          <th mat-header-cell *matHeaderCellDef>Nascimento</th>
+          <td mat-cell *matCellDef="let a">{{ a.nascimento | date:'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let a">
+            <button mat-icon-button color="primary" (click)="abrirFormulario(a)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deletar(a.id!)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+      </table>
+
+      <p *ngIf="!loading && animais.length === 0" class="vazio">Nenhum animal encontrado.</p>
+    </mat-card-content>
+  </mat-card>
+
+</div>
