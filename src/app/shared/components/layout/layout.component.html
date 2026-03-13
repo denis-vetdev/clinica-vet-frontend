@@ -1,0 +1,53 @@
+<mat-sidenav-container class="container">
+
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <div class="logo">
+      <mat-icon>pets</mat-icon>
+      <span>Clínica Vet</span>
+    </div>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/tutores" routerLinkActive="active">
+        <mat-icon matListItemIcon>people</mat-icon>
+        <span matListItemTitle>Tutores</span>
+      </a>
+      <a mat-list-item routerLink="/animais" routerLinkActive="active">
+        <mat-icon matListItemIcon>pets</mat-icon>
+        <span matListItemTitle>Animais</span>
+      </a>
+      <a mat-list-item routerLink="/veterinarios" routerLinkActive="active">
+        <mat-icon matListItemIcon>medical_services</mat-icon>
+        <span matListItemTitle>Veterinários</span>
+      </a>
+      <a mat-list-item routerLink="/consultas" routerLinkActive="active">
+        <mat-icon matListItemIcon>event</mat-icon>
+        <span matListItemTitle>Consultas</span>
+      </a>
+    </mat-nav-list>
+
+    <div class="logout">
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Sair
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{ titulo }}</span>
+    </mat-toolbar>
+
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

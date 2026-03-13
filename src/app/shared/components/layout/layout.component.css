@@ -1,0 +1,85 @@
+.container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  background: #1a237e;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+}
+
+mat-nav-list a {
+  color: rgba(255,255,255,0.8) !important;
+  margin: 4px 8px;
+  border-radius: 8px;
+}
+
+mat-nav-list a.active {
+  background: rgba(255,255,255,0.15) !important;
+  color: white !important;
+}
+
+mat-nav-list mat-icon {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+.logout {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.logout button {
+  color: rgba(255,255,255,0.8);
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+::ng-deep .sidenav mat-nav-list .mat-mdc-list-item {
+  color: rgba(255,255,255,0.8) !important;
+  margin: 4px 8px;
+  border-radius: 8px;
+}
+
+::ng-deep .sidenav mat-nav-list .mat-mdc-list-item .mdc-list-item__primary-text {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+::ng-deep .sidenav mat-nav-list .mat-mdc-list-item mat-icon {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+::ng-deep .sidenav mat-nav-list .mat-mdc-list-item.active {
+  background: rgba(255,255,255,0.15) !important;
+}
+
+::ng-deep .sidenav mat-nav-list .mat-mdc-list-item.active .mdc-list-item__primary-text {
+  color: white !important;
+}
